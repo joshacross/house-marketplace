@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
 import Offers from './pages/Offers';
@@ -11,11 +13,6 @@ import NotFound from './pages/NotFound';
 function App() {
      return (
           <Router>
-               <div className='App'>
-                    <header className='App-header'>
-                         <h1>House Marketplace</h1>
-                    </header>
-               </div>
                <Routes>
                     <Route exact path='/' element={<Explore />} />
                     <Route path='/explore' element={<Explore />} />
@@ -29,6 +26,7 @@ function App() {
                     <Route path='/signup' element={<Signup />} />
                     <Route path='/*' element={<NotFound />} />
                </Routes>
+               <Navbar />
           </Router>
      );
 }

@@ -1,7 +1,11 @@
 import React from 'react';
 
 function Signin() {
-     return <div></div>;
+     return (
+          <div>
+               <h1>Signin</h1>
+          </div>
+     );
 }
 
 export default Signin;
