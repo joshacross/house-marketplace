@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import OAuth from '../components/OAuth';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 
-function Signin() {
+function SignIn() {
      const [showPassword, setShowPassword] = useState(false);
      const [formData, setFormData] = useState({
           email: '',
           password: '',
      });
-
      const { email, password } = formData;
 
      const navigate = useNavigate();
@@ -19,7 +21,26 @@ function Signin() {
                ...prevState,
                [e.target.id]: e.target.value,
           }));
-          console.log(e.target.value);
+     };
+
+     const onSubmit = async (e) => {
+          e.preventDefault();
+
+          try {
+               const auth = getAuth();
+
+               const userCredential = await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+               );
+
+               if (userCredential.user) {
+                    navigate('/');
+               }
+          } catch (error) {
+               toast.error('Bad User Credentials');
+          }
      };
 
      return (
@@ -28,7 +49,8 @@ function Signin() {
                     <header>
                          <p className='pageHeader'>Welcome Back!</p>
                     </header>
-                    <form>
+
+                    <form onSubmit={onSubmit}>
                          <input
                               type='email'
                               className='emailInput'
@@ -37,6 +59,7 @@ function Signin() {
                               value={email}
                               onChange={onChange}
                          />
+
                          <div className='passwordInputDiv'>
                               <input
                                    type={showPassword ? 'text' : 'password'}
@@ -49,8 +72,8 @@ function Signin() {
 
                               <img
                                    src={visibilityIcon}
-                                   className='img showPassword'
                                    alt='show password'
+                                   className='showPassword'
                                    onClick={() =>
                                         setShowPassword(
                                              (prevState) => !prevState
@@ -58,23 +81,26 @@ function Signin() {
                                    }
                               />
                          </div>
+
                          <Link
-                              to='/forgotpassword'
+                              to='/forgot-password'
                               className='forgotPasswordLink'>
-                              Forgot Password?
+                              Forgot Password
                          </Link>
+
                          <div className='signInBar'>
                               <p className='signInText'>Sign In</p>
                               <button className='signInButton'>
                                    <ArrowRightIcon
                                         fill='#ffffff'
-                                        width={34}
-                                        height={34}
+                                        width='34px'
+                                        height='34px'
                                    />
                               </button>
                          </div>
                     </form>
-                    {/* Google 0Auth Component*/}
+
+                    <OAuth />
 
                     <Link to='/signup' className='registerLink'>
                          Sign Up Instead
@@ -84,4 +110,4 @@ function Signin() {
      );
 }
 
-export default Signin;
+export default SignIn;
