@@ -64,7 +64,7 @@ function SignUp() {
           <>
                <div className='pageContainer'>
                     <header>
-                         <p className='pageHeader'>Welcome Back!</p>
+                         <p className='pageHeader'>Welcome!</p>
                     </header>
 
                     <form onSubmit={onSubmit}>
@@ -84,7 +84,6 @@ function SignUp() {
                               value={email}
                               onChange={onChange}
                          />
-
                          <div className='passwordInputDiv'>
                               <input
                                    type={showPassword ? 'text' : 'password'}
@@ -94,7 +93,6 @@ function SignUp() {
                                    value={password}
                                    onChange={onChange}
                               />
-
                               <img
                                    src={visibilityIcon}
                                    alt='show password'
