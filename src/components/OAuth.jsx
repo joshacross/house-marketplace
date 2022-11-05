@@ -30,15 +30,13 @@ function OAuth() {
                }
                navigate('/');
           } catch (error) {
-               toast.error('Could not authorize with Google');
+               toast.error('Whoops, could not authorize with Google');
           }
      };
 
      return (
           <div className='socialLogin'>
-               <p>
-                    Sign {location.pathname === '/sign-up' ? 'up' : 'in'} with{' '}
-               </p>
+               <p>Sign {location.pathname === '/signup' ? 'up' : 'in'} with </p>
                <button className='socialIconDiv' onClick={onGoogleClick}>
                     <img
                          className='socialIconImg'

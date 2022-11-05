@@ -84,7 +84,7 @@ function SignIn() {
                          </div>
 
                          <Link
-                              to='/forgot-password'
+                              to='/forgotpassword'
                               className='forgotPasswordLink'>
                               Forgot Password
                          </Link>
