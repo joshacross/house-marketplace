@@ -29,9 +29,9 @@ function Category() {
                     // create a query
                     const q = query(
                          listingsRef,
-                         where('type', '==', params.categoryName)
-                         // orderBy('timeStamp', 'desc'),
-                         // limit(10)
+                         where('type', '==', params.categoryName),
+                         orderBy('timestamp', 'desc'),
+                         limit(10)
                     );
 
                     // execute query to get a "snapshot"
@@ -43,7 +43,6 @@ function Category() {
                     const listings = [];
 
                     querySnap.forEach((doc) => {
-                         console.log('doc.data() =>', doc.data());
                          return listings.push({
                               id: doc.id,
                               data: doc.data(),

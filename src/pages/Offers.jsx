@@ -29,9 +29,9 @@ function Offers() {
                     // create a query
                     const q = query(
                          listingsRef,
-                         where('offer', '==', true)
-                         // orderBy('timeStamp', 'desc'),
-                         // limit(10)
+                         where('offer', '==', true),
+                         orderBy('timestamp', 'desc'),
+                         limit(10)
                     );
 
                     // execute query to get a "snapshot"
@@ -43,7 +43,6 @@ function Offers() {
                     const listings = [];
 
                     querySnap.forEach((doc) => {
-                         console.log('doc.data() =>', doc.data());
                          return listings.push({
                               id: doc.id,
                               data: doc.data(),
@@ -57,16 +56,12 @@ function Offers() {
           };
 
           fetchListings();
-     }, [params.categoryName]);
+     }, []);
 
      return (
           <div className='category'>
                <header>
-                    <p className='pageHeader'>
-                         {params.categoryName === 'rent'
-                              ? 'Places for Rent'
-                              : 'Places for sale'}
-                    </p>
+                    <p className='pageHeader'>Offers</p>
                </header>
 
                {loading ? (
@@ -86,7 +81,7 @@ function Offers() {
                          </main>
                     </>
                ) : (
-                    <p>No listings for {params.categoryName}</p>
+                    <p>There are no current offers available</p>
                )}
           </div>
      );

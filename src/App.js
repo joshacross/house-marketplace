@@ -7,6 +7,7 @@ import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
 import Offers from './pages/Offers';
 import Category from './pages/Category';
+import CreateListing from './pages/CreateListing';
 import Profile from './pages/Profile';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
@@ -34,6 +35,11 @@ function App() {
                          </Route>
                          <Route path='/signin' element={<Signin />} />
                          <Route path='/signup' element={<Signup />} />
+                         <Route
+                              path='/create-listing'
+                              element={<CreateListing />}
+                         />
+
                          <Route path='/*' element={<NotFound />} />
                     </Routes>
                     <Navbar />
